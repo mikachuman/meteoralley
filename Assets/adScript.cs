@@ -5,6 +5,7 @@ using UnityEngine.Advertisements;
 public class adScript : MonoBehaviour {
     bool adsReady = false;
     bool showingAd = false;
+    public GameObject gameOver;
 
     void Awake() {
         if (Advertisement.isSupported) {
@@ -32,7 +33,19 @@ public class adScript : MonoBehaviour {
             yield return new WaitForSeconds(1f);
             if (Advertisement.IsReady())
             {
-                Advertisement.Show();
+                Advertisement.Show(null, new ShowOptions
+                {
+                    resultCallback = result =>
+                    {
+                        Debug.Log(result.ToString());
+                        if (result == ShowResult.Finished)
+                        {
+                            Application.LoadLevel(0);
+                        }
+                    }
+
+                }
+                );
                 adsReady = true;
                 showingAd = false;
             }
@@ -40,15 +53,8 @@ public class adScript : MonoBehaviour {
     }
 
     
-
-    // ID: 61738
-	// Use this for initialization
 	void Start () {
 	
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }
