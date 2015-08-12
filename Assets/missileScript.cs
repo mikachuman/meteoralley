@@ -25,11 +25,11 @@ public class missileScript : MonoBehaviour {
         while (true)
         {
             targetPoint.z = m_transform.position.z;
-            if (Vector3.Distance(targetPoint, m_transform.position) < 10f)
+            if (Vector3.Distance(targetPoint, m_transform.position) < 20f)
             {
                 destroyNow();
             }
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
