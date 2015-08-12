@@ -27,7 +27,7 @@ public class defenderScript : MonoBehaviour {
 
     void Update()
     {
-        if ((Input.GetMouseButtonDown(0) || Input.touchCount > 0 ) &&  missiles < maxMissiles)
+        if ((Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began )) &&  missiles < maxMissiles)
         {
             missiles++;
             GameObject newMissile = Instantiate(missilePrefab, m_transform.position, Quaternion.identity) as GameObject;
